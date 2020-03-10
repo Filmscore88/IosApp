@@ -3,18 +3,22 @@ import { StyleSheet, View, Text } from "react-native";
 
 const Heading = props => {
   return (
-    <View style={styles.heading}>
-      <Text style={styles.headingTitle}>{props.title}</Text>
+    <View style={styles.header}>
+      <Text style={styles.headerText}>{props.title}</Text>
     </View>
   );
 };
 const styles = StyleSheet.create({
-  heading: {
-    padding: 16
+  header: {
+    backgroundColor: "#c0392b",
+    height: 56,
+    paddingTop: 35
   },
-  headingTitle: {
-    color: "#E20354",
-    fontWeight: "bold"
+  headerText: {
+    textAlign: "center",
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "600"
   }
 });
 export default Heading;
