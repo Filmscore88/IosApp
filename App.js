@@ -1,11 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Heading from "./components/Heading";
+
 export default function App() {
   return (
-    <View>
-      <Text>Open up App.js to start working on your app!</Text>
+    <View style={styles.heading}>
       <Heading title="Elmhurst SDA" />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  heading: {
+    paddingTop: 30
+  }
+});
