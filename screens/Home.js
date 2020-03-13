@@ -1,11 +1,26 @@
 import React from "react";
-import { View, Text } from "react-native";
-const Home = props => {
+import { StyleSheet, View, Text } from "react-native";
+
+function Home() {
   return (
-    <View>
-      <Text>"HI"</Text>
+    <View style={styles.container}>
+      <Text>"EVENTS"</Text>
     </View>
   );
-};
+}
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#ebebeb"
+  },
+  text: {
+    paddingTop: 5,
+    color: "#fff",
+    fontSize: 15,
+    fontWeight: "400"
+  }
+});
 
 export default Home;

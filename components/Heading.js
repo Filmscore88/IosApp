@@ -11,14 +11,16 @@ const Heading = props => {
 };
 const styles = StyleSheet.create({
   header: {
-    paddingTop: 1,
+    paddingTop: 60,
     flexDirection: "column",
     backgroundColor: "#4682b4",
-    height: 85,
+    height: 120,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    paddingBottom: 15
   },
   headerText: {
+    paddingTop: 5,
     color: "#fff",
     fontSize: 15,
     fontWeight: "400"

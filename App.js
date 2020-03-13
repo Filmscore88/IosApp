@@ -4,15 +4,5 @@ import { StyleSheet, Text, View } from "react-native";
 import HomeStack from "./components/HomeStack";
 
 export default function App() {
-  return (
-    <View style={styles.heading}>
-      <HomeStack />
-    </View>
-  );
+  return <HomeStack />;
 }
-
-const styles = StyleSheet.create({
-  heading: {
-    paddingTop: 30
-  }
-});
