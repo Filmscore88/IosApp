@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from "react-native";
 function Home() {
   return (
     <View style={styles.container}>
-      <Text>"EVENTS"</Text>
+      <Text>"Home"</Text>
     </View>
   );
 }
