@@ -1,23 +1,33 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { Ionicons } from "@expo/vector-icons";
 
 import Heading from "../components/Heading";
 import Home from "../screens/Home";
-const Stack = createStackNavigator();
+import Events from "../screens/Events";
+import Give from "../screens/Give";
+import Sermons from "../screens/Sermons";
+
+const Tab = createMaterialTopTabNavigator();
 
 function HomeStack() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          header: () => <Heading title="Elmhurst SDA" />,
-          headerStyle: { height: 300 }
+      <Heading title="Elmhurst SDA" />
+      <Tab.Navigator
+        tabBarOptions={{
+          labelStyle: { fontSize: 12 },
+          tabStyle: { width: 100 },
+          style: { backgroundColor: "powderblue" }
         }}
       >
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator>
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Events" component={Events} />
+        <Tab.Screen name="Give" component={Give} />
+        <Tab.Screen name="Sermons" component={Sermons} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
