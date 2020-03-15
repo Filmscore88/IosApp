@@ -6,7 +6,6 @@ import { Ionicons } from "@expo/vector-icons";
 
 import Heading from "../components/Heading";
 import Home from "../screens/Home";
-import Events from "../screens/Events";
 import Give from "../screens/Give";
 import Sermons from "../screens/Sermons";
 
@@ -24,7 +23,6 @@ function HomeStack() {
         }}
       >
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Events" component={Events} />
         <Tab.Screen name="Give" component={Give} />
         <Tab.Screen name="Sermons" component={Sermons} />
       </Tab.Navigator>

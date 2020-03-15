@@ -1,26 +1,38 @@
 import React from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  ScrollView,
+  Dimensions
+} from "react-native";
 
-function Home({ navigation }) {
+function Events() {
+  let screenWidth = Dimensions.get("window").width;
+
   return (
-    <View style={styles.container}>
-      <Text>"Home"</Text>
+    <View>
+      <ScrollView
+        horizontal="false"
+        showsHorizontalScrollIndicator="false"
+        showsVerticalScrollIndicator="false"
+      >
+        <Image
+          style={{ width: 300, height: 300 }}
+          source={require("../image/Biomimicry.jpg")}
+        />
+        <Image
+          style={{ width: 300, height: 300 }}
+          source={require("../image/elmhurstimages.jpg")}
+        />
+        <Image
+          style={{ width: 300, height: 300 }}
+          source={require("../image/weightloss.jpg")}
+        />
+      </ScrollView>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#ebebeb"
-  },
-  text: {
-    paddingTop: 5,
-    color: "#fff",
-    fontSize: 15,
-    fontWeight: "400"
-  }
-});
-
-export default Home;
+export default Events;
