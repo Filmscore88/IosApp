@@ -8,7 +8,7 @@ import {
   Dimensions
 } from "react-native";
 
-function Events() {
+function Home() {
   let screenWidth = Dimensions.get("window").width;
 
   return (
@@ -35,4 +35,4 @@ function Events() {
   );
 }
 
-export default Events;
+export default Home;
