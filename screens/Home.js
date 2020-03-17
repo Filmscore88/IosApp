@@ -1,36 +1,12 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  ScrollView,
-  Dimensions
-} from "react-native";
-
+import { StyleSheet, View, Text } from "react-native";
+import NewsReel from "../components/NewsReel";
 function Home() {
-  let screenWidth = Dimensions.get("window").width;
-
   return (
     <View>
-      <ScrollView
-        horizontal="false"
-        showsHorizontalScrollIndicator="false"
-        showsVerticalScrollIndicator="false"
-      >
-        <Image
-          style={{ width: 300, height: 300 }}
-          source={require("../image/Biomimicry.jpg")}
-        />
-        <Image
-          style={{ width: 300, height: 300 }}
-          source={require("../image/elmhurstimages.jpg")}
-        />
-        <Image
-          style={{ width: 300, height: 300 }}
-          source={require("../image/weightloss.jpg")}
-        />
-      </ScrollView>
+      <Text>This is the Home Screen where you can scroll the newsreel</Text>
+
+      <NewsReel />
     </View>
   );
 }
