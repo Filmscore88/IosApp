@@ -5,17 +5,24 @@ import {
   Text,
   Dimensions,
   Image,
-  FlatList
+  FlatList,
+  TouchableHighlight,
+  Linking
 } from "react-native";
 
 const { width } = Dimensions.get("window");
 
+const getURL = item => {
+  Linking.openURL(item);
+};
 renderRow = ({ item }) => {
   return (
-    <View style={styles.itemRow}>
-      <Image source={item.thumbnailUrl} style={styles.itemImage} />
-      <Text style={styles.itemText}>{item.name}</Text>
-    </View>
+    <TouchableHighlight onPress={() => getURL(item.url)}>
+      <View style={styles.itemRow}>
+        <Image source={item.thumbnailUrl} style={styles.itemImage} />
+        <Text style={styles.itemText}>{item.name}</Text>
+      </View>
+    </TouchableHighlight>
   );
 };
 const Events = () => {

@@ -5,8 +5,6 @@ import Events from "../components/Events";
 function Home() {
   return (
     <View>
-      <Text>This is the Home Screen where you can scroll the newsreel</Text>
-
       <Events />
     </View>
   );
