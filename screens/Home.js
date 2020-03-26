@@ -5,6 +5,7 @@ import Events from "../components/Events";
 function Home() {
   return (
     <View>
+      <NewsReel />
       <Events />
     </View>
   );

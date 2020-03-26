@@ -9,11 +9,25 @@ import {
   FlatList
 } from "react-native";
 
-function NewsReel() {
-  let screenWidth = Dimensions.get("window").width;
+const cheerio = require("cheerio");
+const request = require("request-promise");
+const url = "http://insta.bible/";
 
-  return <View></View>;
+function getVerses() {
+  request(url, function(err, resp, html) {
+    if (!err) {
+      const $ = cheerio.load(html);
+      console.log(html);
+    }
+  });
 }
+
+getVerses();
+// function NewsReel() {
+//   let screenWidth = Dimensions.get("window").width;
+//
+//   return <View></View>;
+// }
 
 export default NewsReel;
 
