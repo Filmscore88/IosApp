@@ -8,27 +8,26 @@ import {
   Image,
   FlatList
 } from "react-native";
+import axios from "axios";
+const cheerio = require("react-native-cheerio");
 
-const cheerio = require("cheerio");
-const request = require("request-promise");
-const url = "http://insta.bible/";
+const NewsReel = async function scrapeRealtor() {
+  const html = await axios.get("http://insta.bible/");
 
-function getVerses() {
-  request(url, function(err, resp, html) {
-    if (!err) {
-      const $ = cheerio.load(html);
-      console.log(html);
-    }
+  const $ = await cheerio.load(html.data);
+
+  let data = [];
+  $(".wp-block-image").each((i, elem) => {
+    data.push({
+      image: $(elem)
+        .children()
+        .first()
+        .attr("src")
+    });
   });
-}
 
-getVerses();
-// function NewsReel() {
-//   let screenWidth = Dimensions.get("window").width;
-//
-//   return <View></View>;
-// }
-
+  console.log(data);
+};
 export default NewsReel;
 
 // () => {
