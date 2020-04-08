@@ -1,14 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import NewsReel from "../components/NewsReel";
 import Events from "../components/Events";
+import DailyQuotes from "../components/DailyQuotes";
 function Home() {
-  {
-    NewsReel();
-  }
   return (
     <View>
-      <Events />
+      <DailyQuotes />
     </View>
   );
 }

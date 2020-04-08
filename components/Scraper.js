@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 const cheerio = require("react-native-cheerio");
 
-const NewsReel = async function scrapeRealtor() {
+const Scraper = async function scrapeRealtor() {
   const html = await axios.get("http://insta.bible/");
 
   const $ = await cheerio.load(html.data);
@@ -25,10 +25,10 @@ const NewsReel = async function scrapeRealtor() {
         .attr("src")
     });
   });
-
-  console.log(data);
+  return data;
 };
-export default NewsReel;
+
+export default Scraper;
 
 // () => {
 //   const [startDate, setStartDate] = useState(new Date());
