@@ -12,18 +12,9 @@ const Tab = createMaterialTopTabNavigator();
 function HomeStack() {
   return (
     <NavigationContainer>
-      <Heading title="Elmhurst SDA" />
-      <Tab.Navigator
-        tabBarOptions={{
-          labelStyle: { fontSize: 12 },
-          tabStyle: { width: 100 },
-          style: { backgroundColor: "powderblue" }
-        }}
-      >
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Give" component={Give} />
-        <Tab.Screen name="Sermons" component={Sermons} />
-      </Tab.Navigator>
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Give" component={Give} />
+      <Tab.Screen name="Sermons" component={Sermons} />
     </NavigationContainer>
   );
 }
