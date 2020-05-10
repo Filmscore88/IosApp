@@ -2,8 +2,13 @@ import "react-native-gesture-handler";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import HomeStack from "./components/HomeStack";
-import Home from "./screens/Home";
-
+import LiveBackground from "./components/LiveBackground";
+import Quote from "./components/Quote";
 export default function App() {
-  return <Home />;
+  return (
+    <View>
+      <LiveBackground />
+      <Quote />;
+    </View>
+  );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Dimensions } from "react-native";
 import Events from "../components/Events";
 import { Audio, Video } from "expo-av";
-import BackRound from "../backround.mp4";
+import BackRound from "../foreststream.mp4";
 import DailyQuotes from "../components/DailyQuotes";
 function Home() {
   const { width } = Dimensions.get("window");
