@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const Quote = ({ title }) => {
+const Quote = ({ text }) => {
   return (
     <View>
-      <Text style={styles.text}>{title}</Text>
+      <Text style={styles.text}>{text}</Text>
     </View>
   );
 };
