@@ -19,8 +19,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "ios.motivation.app",
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "bundleIdentifier": "ios.motivation.app"
     }
   }
 }
