@@ -2,31 +2,46 @@ import * as firebase from "firebase";
 
 // Optionally import the services that you want to use
 //import "firebase/auth";
-//import "firebase/database";
+import "firebase/database";
 import "firebase/firestore";
 //import "firebase/functions";
 //import "firebase/storage";
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "api-key",
-  authDomain: "project-id.firebaseapp.com",
-  databaseURL: "https://project-id.firebaseio.com",
-  projectId: "project-id",
-  storageBucket: "project-id.appspot.com",
-  messagingSenderId: "sender-id",
-  appId: "app-id",
-  measurementId: "G-measurement-id"
+  apiKey: "AIzaSyDKJ4NyveAyOh1oalZtkg1NmcqV3LOhuHY",
+  authDomain: "iosapp-6c0c8.firebaseapp.com",
+  databaseURL: "https://iosapp-6c0c8.firebaseio.com",
+  projectId: "iosapp-6c0c8",
+  storageBucket: "iosapp-6c0c8.appspot.com",
+  messagingSenderId: "602590350649",
+  appId: "1:602590350649:web:09a713ac578e244fb5ece8",
+  measurementId: "G-XWQJE140C1"
 };
 
-const app = firebase.initializeApp(firebaseConfig);
-const dbh = firebase.firestore();
-dbh
-  .collection("characters")
-  .doc("mario")
-  .set({
-    employment: "plumber",
-    outfitColor: "red",
-    specialAttack: "fireball"
-  });
-export default dbh;
+const dbh = firebase.initializeApp(firebaseConfig);
+// dbh
+
+export async function getQuotes(quotesRetrieved) {
+  dbh
+    .firestore()
+    .collection("Quotes")
+    .get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+      });
+    });
+
+  // const snapshot = await firebase
+  //   .firestore()
+  //   .collection("Quotes")
+  //   .get();
+  //
+  // snapshot.forEach(doc => {
+  //   quotelist.push(doc.data());
+  // });
+
+  quotesRetrieved(quotelist);
+}

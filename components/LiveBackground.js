@@ -27,7 +27,7 @@ function LiveBackground() {
           alignItems: "center"
         }}
       >
-        <Quote title="hello world" />
+        <Quote text="hello world" />
       </View>
     </View>
   );
