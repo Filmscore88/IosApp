@@ -5,26 +5,24 @@ import { StyleSheet, Text, View } from "react-native";
 
 class QuoteList extends Component {
   state = {
-    quoteList: []
+    quotelist: []
   };
 
-  onQuotesReceived = quoteList => {
-    console.log("Test");
+  onQuotesReceived = quotelist => {
     this.setState(prevState => ({
-      quoteList: (prevState.quoteList = quoteList)
+      quotelist: (prevState.quotelist = quotelist)
     }));
   };
 
   componentDidMount() {
-    console.log("This component did mount works>>>>>>>>>>>>>>>>");
-
+    console.log("component mounted..............");
     getQuotes(this.onQuotesReceived);
   }
 
   render() {
     return (
       <View>
-        <Text>{this.state.quoteList}</Text>
+        <Text>{this.state.quotelist}</Text>
       </View>
     );
   }

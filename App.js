@@ -10,7 +10,6 @@ export default function App() {
   return (
     <View>
       <QuoteList />
-      <LiveBackground />
     </View>
   );
 }

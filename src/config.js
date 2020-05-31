@@ -19,29 +19,21 @@ const firebaseConfig = {
   measurementId: "G-XWQJE140C1"
 };
 
-const dbh = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+console.log("app initialized firestore");
 // dbh
+var quotelist = [];
 
 export async function getQuotes(quotesRetrieved) {
-  dbh
-    .firestore()
-    .collection("Quotes")
+  console.log("function get Quotes being called");
+
+  var db = firebase.firestore();
+  db.collection("Random Quotes")
     .get()
-    .then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        quotelist.push(doc.id);
       });
+      quotesRetrieved(quotelist);
     });
-
-  // const snapshot = await firebase
-  //   .firestore()
-  //   .collection("Quotes")
-  //   .get();
-  //
-  // snapshot.forEach(doc => {
-  //   quotelist.push(doc.data());
-  // });
-
-  quotesRetrieved(quotelist);
 }
