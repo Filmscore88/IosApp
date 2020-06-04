@@ -20,13 +20,10 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-console.log("app initialized firestore");
-// dbh
+
 var quotelist = [];
 
 export async function getQuotes(quotesRetrieved) {
-  console.log("function get Quotes being called");
-
   var db = firebase.firestore();
   db.collection("Random Quotes")
     .get()

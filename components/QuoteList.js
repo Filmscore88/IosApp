@@ -4,19 +4,22 @@ import { getQuotes } from "../src/config";
 import { StyleSheet, Text, View } from "react-native";
 
 class QuoteList extends Component {
-  state = {
-    quotelist: []
-  };
+  constructor() {
+    super();
 
-  onQuotesReceived = quotelist => {
-    this.setState(prevState => ({
-      quotelist: (prevState.quotelist = quotelist)
-    }));
-  };
+    this.state = {
+      quotelist: []
+    };
+
+    onQuotesReceived = quotelist => {
+      this.setState(prevState => ({
+        quotelist: (prevState.quotelist = quotelist)
+      }));
+    };
+  }
 
   componentDidMount() {
-    console.log("component mounted..............");
-    getQuotes(this.onQuotesReceived);
+    getQuotes(onQuotesReceived);
   }
 
   render() {
