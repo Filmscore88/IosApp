@@ -10,9 +10,9 @@ class QuoteList extends Component {
     this.state = {
       quotelist: []
     };
-
+    const self = this;
     onQuotesReceived = quotelist => {
-      this.setState(prevState => ({
+      self.setState(prevState => ({
         quotelist: (prevState.quotelist = quotelist)
       }));
     };
@@ -25,7 +25,10 @@ class QuoteList extends Component {
   render() {
     return (
       <View>
-        <Text>{this.state.quotelist}</Text>
+        <Text style={{ color: "blue" }}>THIS IS RENDERING </Text>
+        <Text style style={{ color: "blue" }}>
+          {this.state.quotelist}
+        </Text>
       </View>
     );
   }
