@@ -1,20 +1,36 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { Component } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import PropTypes from "prop-types";
 
-const Quote = ({ text }) => {
-  return (
-    <View>
-      <Text style={styles.text}>{text}</Text>
-    </View>
-  );
-};
+export default class Quote extends Component {
+  static propTypes = {
+    items: PropTypes.array.isRequired
+  };
+
+  render() {
+    return (
+      <View style={styles.itemsList}>
+        {this.props.items.map((item, index) => {
+          return (
+            <View key={index}>
+              <Text style={styles.itemtext}>{item.name}</Text>
+            </View>
+          );
+        })}
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  text: {
-    color: "#fff",
-    textAlign: "center",
-    fontSize: 35
+  itemsList: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-around"
+  },
+  itemtext: {
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center"
   }
 });
-
-export default Quote;

@@ -4,6 +4,7 @@ import { Audio, Video } from "expo-av";
 import BackRound from "../soaringclouds.mp4";
 import Quote from "../components/Quote";
 import QuoteList from "../components/QuoteList";
+
 function LiveBackground() {
   const { width } = Dimensions.get("window");
 

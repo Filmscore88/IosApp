@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import { getQuotes } from "../src/config";
-
-import { StyleSheet, Text, View } from "react-native";
+import Quote from "./components/Quote";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  AppRegistry,
+  ScrollView
+} from "react-native";
 
 class QuoteList extends Component {
   constructor() {
@@ -23,14 +30,23 @@ class QuoteList extends Component {
   }
 
   render() {
+    let screenWidth = Dimensions.get("window").width;
+    let screenHeight = Dimensions.get("window").height;
+
     return (
-      <View>
-        <Text style={{ color: "blue" }}>THIS IS RENDERING </Text>
-        <Text style style={{ color: "blue" }}>
-          {this.state.quotelist}
-        </Text>
+      <View style={styles.container}>
+        <Quote items={this.state.quotelist} />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "#ebebeb"
+  }
+});
+
 export default QuoteList;

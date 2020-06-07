@@ -6,7 +6,6 @@ import LiveBackground from "./components/LiveBackground";
 import Quote from "./components/Quote";
 import QuoteList from "./components/QuoteList";
 import { decode, encode } from "base-64";
-
 if (!global.btoa) {
   global.btoa = encode;
 }
@@ -17,7 +16,7 @@ if (!global.atob) {
 export default function App() {
   return (
     <View>
-      <LiveBackground />
+      <QuoteList />
     </View>
   );
 }
