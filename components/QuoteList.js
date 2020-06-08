@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getQuotes } from "../src/config";
-import Quote from "./components/Quote";
+import Quote from "./Quote";
 import {
   StyleSheet,
   Text,
@@ -30,9 +30,6 @@ class QuoteList extends Component {
   }
 
   render() {
-    let screenWidth = Dimensions.get("window").width;
-    let screenHeight = Dimensions.get("window").height;
-
     return (
       <View style={styles.container}>
         <Quote items={this.state.quotelist} />
@@ -43,9 +40,7 @@ class QuoteList extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#ebebeb"
+    justifyContent: "center"
   }
 });
 
