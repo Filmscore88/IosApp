@@ -17,7 +17,15 @@ export default class Quote extends Component {
   _renderItem({ item, index }) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ color: "red", paddingBottom: 30 }}>{item}</Text>
+        <Text
+          style={{
+            color: "white",
+            fontSize: 30,
+            backgroundColor: "transparent"
+          }}
+        >
+          {item}
+        </Text>
       </View>
     );
   }
