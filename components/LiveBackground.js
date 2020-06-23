@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, Dimensions } from "react-native";
 import { Audio, Video } from "expo-av";
-import BackRound from "../foreststream.mp4";
+import BackRound from "../MountShuksan.mp4";
 import Quote from "../components/Quote";
 import QuoteList from "../components/QuoteList";
 
