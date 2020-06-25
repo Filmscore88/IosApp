@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import PropTypes from "prop-types";
 import Carousel from "react-native-snap-carousel";
+import { AntDesign } from "@expo/vector-icons";
+
 export default class Quote extends Component {
   static propTypes = {
     items: PropTypes.array.isRequired
@@ -16,16 +18,23 @@ export default class Quote extends Component {
 
   _renderItem({ item, index }) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
         <Text
           style={{
             color: "white",
             fontSize: 30,
-            backgroundColor: "transparent"
+            fontFamily: "Verdana-BoldItalic"
           }}
         >
           {item}
         </Text>
+        <AntDesign name="hearto" size={30} color="red" />
       </View>
     );
   }
