@@ -6,13 +6,36 @@ import {
   ScrollView,
   Dimensions,
   SafeAreaView,
-  Animated
+  Animated,
+  Platform,
+  Share,
+  Linking
 } from "react-native";
 import PropTypes from "prop-types";
 import Carousel from "react-native-snap-carousel";
 import { AntDesign } from "@expo/vector-icons";
+import * as Sharing from "expo-sharing";
+import { FileSystem } from "expo";
+// import getGalleryImageAsync from "./getGalleryImageAsync";
 
 export default function Quote({ items }) {
+  const image_source =
+    "https://images.unsplash.com/photo-1508138221679-760a23a2285b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80";
+
+  share = () => {
+    FileSystem.downloadAsync(
+      image_source,
+      FileSystem.documentDirectory + ".jpeg"
+    )
+      .then(({ uri }) => {
+        console.log("Finished downloading to ", uri);
+
+        Sharing.shareAsync(uri);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
   _renderItem = ({ item, index }) => (
     <View
       style={{
@@ -42,6 +65,7 @@ export default function Quote({ items }) {
           setCounter(index);
         }}
       />
+      <Text onPress={() => this.share()}>Share</Text>
     </View>
   );
 
