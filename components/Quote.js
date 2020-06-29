@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  Image,
   View,
   Text,
   StyleSheet,
@@ -14,27 +15,46 @@ import {
 import PropTypes from "prop-types";
 import Carousel from "react-native-snap-carousel";
 import { AntDesign } from "@expo/vector-icons";
-import * as Sharing from "expo-sharing";
-import { FileSystem } from "expo";
 // import getGalleryImageAsync from "./getGalleryImageAsync";
 
 export default function Quote({ items }) {
-  const image_source =
-    "https://images.unsplash.com/photo-1508138221679-760a23a2285b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80";
+  onShare = async () => {
+    const { default: exampleImage } = await import("../MountShuksan.mp4");
+    const uri = Image.resolveAssetSource(exampleImage).uri;
 
-  share = () => {
-    FileSystem.downloadAsync(
-      image_source,
-      FileSystem.documentDirectory + ".jpeg"
+    Share.share(
+      {
+        title: "test title",
+        url: uri,
+        message: " success!!"
+      },
+      {
+        excludedActivityTypes: [
+          // 'com.apple.UIKit.activity.PostToWeibo',
+          // 'com.apple.UIKit.activity.Print',
+          // 'com.apple.UIKit.activity.CopyToPasteboard',
+          // 'com.apple.UIKit.activity.AssignToContact',
+          // 'com.apple.UIKit.activity.SaveToCameraRoll',
+          // 'com.apple.UIKit.activity.AddToReadingList',
+          // 'com.apple.UIKit.activity.PostToFlickr',
+          // 'com.apple.UIKit.activity.PostToVimeo',
+          // 'com.apple.UIKit.activity.PostToTencentWeibo',
+          // 'com.apple.UIKit.activity.AirDrop',
+          // 'com.apple.UIKit.activity.OpenInIBooks',
+          // 'com.apple.UIKit.activity.MarkupAsPDF',
+          // 'com.apple.reminders.RemindersEditorExtension',
+          // 'com.apple.mobilenotes.SharingExtension',
+          // 'com.apple.mobileslideshow.StreamShareService',
+          // 'com.linkedin.LinkedIn.ShareExtension',
+          // 'pinterest.ShareExtension',
+          // 'com.google.GooglePlus.ShareExtension',
+          // 'com.tumblr.tumblr.Share-With-Tumblr',
+          // 'net.whatsapp.WhatsApp.ShareExtension', //WhatsApp
+        ]
+      }
     )
-      .then(({ uri }) => {
-        console.log("Finished downloading to ", uri);
-
-        Sharing.shareAsync(uri);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+      .then(res => console.log(res))
+      .catch(error => console.log(error));
   };
   _renderItem = ({ item, index }) => (
     <View
@@ -65,7 +85,7 @@ export default function Quote({ items }) {
           setCounter(index);
         }}
       />
-      <Text onPress={() => this.share()}>Share</Text>
+      <Text onPress={this.onShare}>Share</Text>
     </View>
   );
 
