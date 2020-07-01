@@ -3,6 +3,7 @@ import {
   Image,
   View,
   Text,
+  Card,
   StyleSheet,
   ScrollView,
   Dimensions,
@@ -15,17 +16,17 @@ import {
 import PropTypes from "prop-types";
 import Carousel from "react-native-snap-carousel";
 import { AntDesign } from "@expo/vector-icons";
-// import getGalleryImageAsync from "./getGalleryImageAsync";
+import { captureRef } from "react-native-view-shot";
 
 export default function Quote({ items }) {
   onShare = async () => {
-    const { default: exampleImage } = await import("../MountShuksan.mp4");
-    const uri = Image.resolveAssetSource(exampleImage).uri;
-
+    const snapShot = await captureRef(this.myShot, {
+      result: "data-uri"
+    });
     Share.share(
       {
         title: "test title",
-        url: uri,
+        url: snapShot,
         message: " success!!"
       },
       {
@@ -95,7 +96,7 @@ export default function Quote({ items }) {
   const [liked, setLiked] = useState(false);
   const [visible, setVisible] = useState(false);
   const [counter, setCounter] = useState(-2);
-
+  this.myShot = React.createRef();
   useEffect(() => {
     if (liked == true) {
       Animated.spring(currentValue, {
@@ -111,7 +112,7 @@ export default function Quote({ items }) {
     }
   });
   return (
-    <SafeAreaView>
+    <SafeAreaView ref={this.myShot}>
       {visible && (
         <AnimatedIcon
           style={{
