@@ -1,9 +1,174 @@
+
+Videos to use for data:
+clouds no background noise: https://youtu.be/Eb8umA0Uwo0
+jungle stream : https://youtu.be/LEe2pLCC24I
+free motion animated background, leaves falling trees: https://youtu.be/zUJGBiH1Q9M
+Mount Rainer National Park (calm homescreen): https://www.youtube.com/watch?v=X-VwusUNjcU
+Autum leaves: https://www.youtube.com/watch?v=5YRqL4d86Ao
+Autum leaves V2: https://www.youtube.com/watch?v=QWMjRbA1Rew
+Mount Shuksan (6:02 best scene): https://youtu.be/qRTVg8HHzUo
+------------------------------------------------------------------------------------------------
+Problems to overcome:
+* Videos cannot be shared as easily as pictures
+* Adding text to videos/pictures has to be unique to every video/picture
+------------------------------------------------------------------------------------------------------
+Features to have:
 * I want to have a free video and the rest as premium members only.
-* I also want to have pictures
-* The videos should come from youtube with nature background sounds and the videos should be as short as possible.
-* Quotes as a component.
-* Videos as a component.
-* Images as a component.
 * I want be able to share any of the media via facebook/instagram/ etc... with logo.
 * I want to incorporate siri into the final application.
 * I want to see a navigation bar to easily move pages.
+* Will need theme library like the Motivation app, in order to match text overlay to background properly.
+* I want to be able to like a quote with the heart like instagram and store liked quotes.
+* The LiveBackground must be a clip that is shareable on instagram, fb, social media.
+* The font size changes depending on the length of the quote.
+
+
+
+
+
+
+
+
+
+
+QUOTE COMPONENT WITH SNAPSHOT AND SHARING EDITS ( PRE COMITT)
+import React, { useState, useEffect } from "react";
+import {
+  Image,
+  View,
+  Text,
+  Card,
+  StyleSheet,
+  ScrollView,
+  Dimensions,
+  SafeAreaView,
+  Animated,
+  Platform,
+  Share,
+  Linking
+} from "react-native";
+import PropTypes from "prop-types";
+import Carousel from "react-native-snap-carousel";
+import { AntDesign } from "@expo/vector-icons";
+import { captureRef } from "react-native-view-shot";
+
+export default function Quote({ items }) {
+  onShare = async () => {
+    const snapShot = await captureRef(this.myShot, {
+      result: "data-uri"
+    });
+    Share.share(
+      {
+        title: "test title",
+        url: snapShot,
+        message: " success!!"
+      },
+      {
+        excludedActivityTypes: [
+          // 'com.apple.UIKit.activity.PostToWeibo',
+          // 'com.apple.UIKit.activity.Print',
+          // 'com.apple.UIKit.activity.CopyToPasteboard',
+          // 'com.apple.UIKit.activity.AssignToContact',
+          // 'com.apple.UIKit.activity.SaveToCameraRoll',
+          // 'com.apple.UIKit.activity.AddToReadingList',
+          // 'com.apple.UIKit.activity.PostToFlickr',
+          // 'com.apple.UIKit.activity.PostToVimeo',
+          // 'com.apple.UIKit.activity.PostToTencentWeibo',
+          // 'com.apple.UIKit.activity.AirDrop',
+          // 'com.apple.UIKit.activity.OpenInIBooks',
+          // 'com.apple.UIKit.activity.MarkupAsPDF',
+          // 'com.apple.reminders.RemindersEditorExtension',
+          // 'com.apple.mobilenotes.SharingExtension',
+          // 'com.apple.mobileslideshow.StreamShareService',
+          // 'com.linkedin.LinkedIn.ShareExtension',
+          // 'pinterest.ShareExtension',
+          // 'com.google.GooglePlus.ShareExtension',
+          // 'com.tumblr.tumblr.Share-With-Tumblr',
+          // 'net.whatsapp.WhatsApp.ShareExtension', //WhatsApp
+        ]
+      }
+    )
+      .then(res => console.log(res))
+      .catch(error => console.log(error));
+  };
+  _renderItem = ({ item, index }) => (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+      }}
+    >
+      <Text
+        style={{
+          color: "white",
+          fontSize: 30,
+          fontFamily: "Verdana-BoldItalic"
+        }}
+      >
+        {item}
+      </Text>
+      <AntDesign
+        name={liked && index == counter ? "heart" : "hearto"}
+        size={30}
+        color="red"
+        onPress={() => {
+          if (liked == false) {
+            setVisible(true);
+          }
+          setLiked(!liked);
+          setCounter(index);
+        }}
+      />
+      <Text onPress={this.onShare}>Share</Text>
+    </View>
+  );
+
+  const { width, height } = Dimensions.get("window");
+  const AnimatedIcon = Animated.createAnimatedComponent(AntDesign);
+  const currentValue = new Animated.Value(1);
+  const [liked, setLiked] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [counter, setCounter] = useState(-2);
+  this.myShot = React.createRef();
+  useEffect(() => {
+    if (liked == true) {
+      Animated.spring(currentValue, {
+        toValue: 2,
+        friction: 2
+      }).start(() => {
+        Animated.spring(currentValue, {
+          toValue: 1
+        }).start(() => {
+          setVisible(false);
+        });
+      });
+    }
+  });
+  return (
+    <SafeAreaView ref={this.myShot}>
+      {visible && (
+        <AnimatedIcon
+          style={{
+            position: "absolute",
+            top: 150,
+            left: "40%",
+            elevation: 4,
+            zIndex: 3,
+            transform: [{ scale: currentValue }]
+          }}
+          name="heart"
+          size={50}
+          color="red"
+        />
+      )}
+      <Carousel
+        ref={ref => (this.carousel = ref)}
+        data={items}
+        sliderWidth={250}
+        itemWidth={250}
+        renderItem={this._renderItem}
+      />
+    </SafeAreaView>
+  );
+}

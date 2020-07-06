@@ -13,10 +13,12 @@ import {
 class QuoteList extends Component {
   constructor() {
     super();
-
+    this.myShot = React.createRef();
+    this.currentShot = null;
     this.state = {
       quotelist: []
     };
+    console.log(this.currentShot);
     const self = this;
     onQuotesReceived = quotelist => {
       self.setState(prevState => ({
@@ -26,6 +28,8 @@ class QuoteList extends Component {
   }
 
   componentDidMount() {
+    this.currentShot = this.myShot.current;
+    console.log(this.currentShot);
     getQuotes(onQuotesReceived);
   }
 
