@@ -11,14 +11,11 @@ import {
 } from "react-native";
 
 class QuoteList extends Component {
-  constructor() {
-    super();
-    this.myShot = React.createRef();
-    this.currentShot = null;
+  constructor(props) {
+    super(props);
     this.state = {
       quotelist: []
     };
-    console.log(this.currentShot);
     const self = this;
     onQuotesReceived = quotelist => {
       self.setState(prevState => ({
@@ -28,15 +25,17 @@ class QuoteList extends Component {
   }
 
   componentDidMount() {
-    this.currentShot = this.myShot.current;
-    console.log(this.currentShot);
     getQuotes(onQuotesReceived);
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Quote items={this.state.quotelist} />
+        <Quote
+          items={this.state.quotelist}
+          iconVisible={this.props.iconVisible}
+          parentMethod={this.props.grandparentMethod}
+        />
       </View>
     );
   }

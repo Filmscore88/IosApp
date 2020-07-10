@@ -13,11 +13,16 @@ import {
   Share,
   Linking
 } from "react-native";
-import PropTypes from "prop-types";
 import Carousel from "react-native-snap-carousel";
 import { AntDesign } from "@expo/vector-icons";
 
-export default function Quote({ items }) {
+export default function Quote({ items, iconVisible, parentMethod }) {
+  const { icon, setIcon } = useState(true);
+  shareQuote = () => {
+    setIcon(false);
+    parentMethod();
+    setIcon(true);
+  };
   _renderItem = ({ item, index }) => (
     <View
       style={{
@@ -35,18 +40,21 @@ export default function Quote({ items }) {
       >
         {item}
       </Text>
-      <AntDesign
-        name={liked && index == counter ? "heart" : "hearto"}
-        size={30}
-        color="red"
-        onPress={() => {
-          if (liked == false) {
-            setVisible(true);
-          }
-          setLiked(!liked);
-          setCounter(index);
-        }}
-      />
+      {icon && (
+        <AntDesign
+          name={liked && index == counter ? "heart" : "hearto"}
+          size={30}
+          color="red"
+          onPress={() => {
+            if (liked == false) {
+              setVisible(true);
+            }
+            setLiked(!liked);
+            setCounter(index);
+          }}
+        />
+      )}
+      <Text onPress={this.shareQuote}>Share </Text>
     </View>
   );
 
@@ -56,7 +64,6 @@ export default function Quote({ items }) {
   const [liked, setLiked] = useState(false);
   const [visible, setVisible] = useState(false);
   const [counter, setCounter] = useState(-2);
-
   useEffect(() => {
     if (liked == true) {
       Animated.spring(currentValue, {

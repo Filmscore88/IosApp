@@ -11,10 +11,13 @@ Mount Shuksan (6:02 best scene): https://youtu.be/qRTVg8HHzUo
 Problems to overcome:
 * Videos cannot be shared as easily as pictures
 * Adding text to videos/pictures has to be unique to every video/picture
+* How to snapshot the image with quote without having anything else on screen
 ------------------------------------------------------------------------------------------------------
 Features to have:
+
 * I want to have a free video and the rest as premium members only.
-* I want be able to share any of the media via facebook/instagram/ etc... with logo.
+
+
 * I want to incorporate siri into the final application.
 * I want to see a navigation bar to easily move pages.
 * Will need theme library like the Motivation app, in order to match text overlay to background properly.
@@ -147,6 +150,109 @@ export default function Quote({ items }) {
   });
   return (
     <SafeAreaView ref={this.myShot}>
+      {visible && (
+        <AnimatedIcon
+          style={{
+            position: "absolute",
+            top: 150,
+            left: "40%",
+            elevation: 4,
+            zIndex: 3,
+            transform: [{ scale: currentValue }]
+          }}
+          name="heart"
+          size={50}
+          color="red"
+        />
+      )}
+      <Carousel
+        ref={ref => (this.carousel = ref)}
+        data={items}
+        sliderWidth={250}
+        itemWidth={250}
+        renderItem={this._renderItem}
+      />
+    </SafeAreaView>
+  );
+}
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+TEMP QUOTE CODE:
+
+import React, { useState, useEffect } from "react";
+import {
+  Image,
+  View,
+  Text,
+  Card,
+  StyleSheet,
+  ScrollView,
+  Dimensions,
+  SafeAreaView,
+  Animated,
+  Platform,
+  Share,
+  Linking
+} from "react-native";
+import PropTypes from "prop-types";
+import Carousel from "react-native-snap-carousel";
+import { AntDesign } from "@expo/vector-icons";
+
+export default function Quote({ items }) {
+  _renderItem = ({ item, index }) => (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+      }}
+    >
+      <Text
+        style={{
+          color: "white",
+          fontSize: 30,
+          fontFamily: "Verdana-BoldItalic"
+        }}
+      >
+        {item}
+      </Text>
+      <AntDesign
+        name={liked && index == counter ? "heart" : "hearto"}
+        size={30}
+        color="red"
+        onPress={() => {
+          if (liked == false) {
+            setVisible(true);
+          }
+          setLiked(!liked);
+          setCounter(index);
+        }}
+      />
+    </View>
+  );
+
+  const { width, height } = Dimensions.get("window");
+  const AnimatedIcon = Animated.createAnimatedComponent(AntDesign);
+  const currentValue = new Animated.Value(1);
+  const [liked, setLiked] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [counter, setCounter] = useState(-2);
+
+  useEffect(() => {
+    if (liked == true) {
+      Animated.spring(currentValue, {
+        toValue: 2,
+        friction: 2
+      }).start(() => {
+        Animated.spring(currentValue, {
+          toValue: 1
+        }).start(() => {
+          setVisible(false);
+        });
+      });
+    }
+  });
+  return (
+    <SafeAreaView>
       {visible && (
         <AnimatedIcon
           style={{

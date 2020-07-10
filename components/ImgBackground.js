@@ -7,28 +7,26 @@ import {
   Button,
   Share,
   Image,
-  SafeAreaView
+  SafeAreaView,
+  ImageBackground
 } from "react-native";
+
 import { Audio, Video } from "expo-av";
-import BackRound from "../MountShuksan.mp4";
-import Quote from "../components/Quote";
+import Image1 from "../treeLights.jpg";
 import QuoteList from "../components/QuoteList";
 import ViewShot from "react-native-view-shot";
 import { captureRef } from "react-native-view-shot";
-
-function LiveBackground() {
-  const [source, setSource] = useState(null);
-  const viewShotRef = useRef();
+function ImgBackground() {
   this.myShot = React.createRef();
-  const onCapture = useCallback(() => {
-    viewShotRef.current.capture().then(uri => setSource({ uri }));
-  }, []);
-  const { width } = Dimensions.get("window");
-  onShare = async () => {
+  const [source, setSource] = useState(null);
+  const dimension = { width: 300, height: 300 };
+  const [visible, setVisible] = useState(true);
+  onCapture = async () => {
+    setVisible(false);
     const snapShot = await captureRef(this.myShot, {
       result: "data-uri"
     });
-    console.log(snapShot);
+
     Share.share(
       {
         title: "test title",
@@ -61,19 +59,19 @@ function LiveBackground() {
       }
     )
       .then(res => console.log(res))
-      .catch(error => console.log(error));
-  };
-  return (
-    <ViewShot ref={viewShotRef}>
-      <View>
-        <Video
-          source={BackRound}
-          isLooping
-          shouldPlay={true}
-          resizeMode="cover"
-          style={{ width, height: 900 }}
-        />
 
+      .catch(error => console.log(error));
+    setVisible(true);
+  };
+  const { width } = Dimensions.get("window");
+
+  return (
+    <View ref={this.myShot}>
+      <ImageBackground
+        source={Image1}
+        resizeMode="cover"
+        style={{ width, height: 900 }}
+      >
         <View
           style={{
             position: "absolute",
@@ -85,21 +83,11 @@ function LiveBackground() {
             alignItems: "center"
           }}
         >
-          <Image
-            ref={this.myShot}
-            fadeDuration={0}
-            source={source}
-            style={{ width: 300, height: 300, paddingTop: 50 }}
-          />
-          <Text onPress={onCapture} style={{ fontSize: 40 }}>
-            Capture
-          </Text>
-          <Text onPress={onShare} style={{ fontSize: 40 }}>
-            SHARE
-          </Text>
+          <Image source={source} style={dimension} />
+          <QuoteList iconVisible={visible} grandparentMethod={this.onCapture} />
         </View>
-      </View>
-    </ViewShot>
+      </ImageBackground>
+    </View>
   );
 }
 const styles = StyleSheet.create({
@@ -115,4 +103,4 @@ const styles = StyleSheet.create({
     color: "red"
   }
 });
-export default LiveBackground;
+export default ImgBackground;
