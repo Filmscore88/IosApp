@@ -21,8 +21,10 @@ function ImgBackground() {
   const [source, setSource] = useState(null);
   const dimension = { width: 300, height: 300 };
   const [visible, setVisible] = useState(true);
+
   onCapture = async () => {
-    setVisible(false);
+    await setVisible(false);
+
     const snapShot = await captureRef(this.myShot, {
       result: "data-uri"
     });

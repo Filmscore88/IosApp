@@ -28,7 +28,7 @@ function LiveBackground() {
     const snapShot = await captureRef(this.myShot, {
       result: "data-uri"
     });
-    console.log(snapShot);
+
     Share.share(
       {
         title: "test title",

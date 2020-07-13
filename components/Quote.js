@@ -14,19 +14,17 @@ import {
   Linking
 } from "react-native";
 import Carousel from "react-native-snap-carousel";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 
 export default function Quote({ items, iconVisible, parentMethod }) {
-  const { icon, setIcon } = useState(true);
   shareQuote = () => {
-    setIcon(false);
     parentMethod();
-    setIcon(true);
   };
   _renderItem = ({ item, index }) => (
     <View
       style={{
         flex: 1,
+
         justifyContent: "center",
         alignItems: "center"
       }}
@@ -40,21 +38,38 @@ export default function Quote({ items, iconVisible, parentMethod }) {
       >
         {item}
       </Text>
-      {icon && (
-        <AntDesign
-          name={liked && index == counter ? "heart" : "hearto"}
-          size={30}
-          color="red"
-          onPress={() => {
-            if (liked == false) {
-              setVisible(true);
-            }
-            setLiked(!liked);
-            setCounter(index);
+      {iconVisible && (
+        <View
+          style={{
+            flexDirection: "row",
+            paddingTop: 100,
+            padding: 50
           }}
-        />
+        >
+          <AntDesign
+            name={liked && index == counter ? "heart" : "hearto"}
+            size={30}
+            color="white"
+            onPress={() => {
+              if (liked == false) {
+                setVisible(true);
+              }
+              setLiked(!liked);
+              setCounter(index);
+            }}
+            style={{
+              flex: 1
+            }}
+          />
+
+          <Entypo
+            name="share-alternative"
+            size={30}
+            color="white"
+            onPress={this.shareQuote}
+          />
+        </View>
       )}
-      <Text onPress={this.shareQuote}>Share </Text>
     </View>
   );
 
@@ -92,7 +107,7 @@ export default function Quote({ items, iconVisible, parentMethod }) {
           }}
           name="heart"
           size={50}
-          color="red"
+          color="white"
         />
       )}
       <Carousel
