@@ -29,7 +29,8 @@ export async function getQuotes(quotesRetrieved) {
     .get()
     .then(querySnapshot => {
       querySnapshot.forEach(doc => {
-        quotelist.push(doc.id);
+        obj = { quote: doc.id, author: doc.data().Author };
+        quotelist.push(obj);
       });
       quotesRetrieved(quotelist);
     });

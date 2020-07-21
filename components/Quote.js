@@ -15,7 +15,7 @@ import {
 } from "react-native";
 import Carousel from "react-native-snap-carousel";
 import { AntDesign, Entypo } from "@expo/vector-icons";
-
+import Fade from "@material-ui/core/Fade";
 export default function Quote({ items, iconVisible, parentMethod }) {
   shareQuote = () => {
     parentMethod();
@@ -93,6 +93,7 @@ export default function Quote({ items, iconVisible, parentMethod }) {
       });
     }
   });
+
   return (
     <SafeAreaView>
       {visible && (
@@ -112,7 +113,16 @@ export default function Quote({ items, iconVisible, parentMethod }) {
       )}
       <Carousel
         ref={ref => (this.carousel = ref)}
-        data={items}
+        data={items.map(data => (
+          <div>
+            <Fade timeout={4000}>
+              <div>{data.quote}</div>
+            </Fade>
+            <Fade timeout={4000}>
+              <div>{data.author}</div>
+            </Fade>
+          </div>
+        ))}
         sliderWidth={250}
         itemWidth={250}
         renderItem={this._renderItem}

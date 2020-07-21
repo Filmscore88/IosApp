@@ -29,6 +29,10 @@ class QuoteList extends Component {
   }
 
   render() {
+    // if (this.state.quotelist.length > 0) {
+    //   debugger;
+    // }
+
     return (
       <View style={styles.container}>
         <Quote
