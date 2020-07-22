@@ -16,6 +16,7 @@ import Image1 from "../treeLights.jpg";
 import QuoteList from "../components/QuoteList";
 import ViewShot from "react-native-view-shot";
 import { captureRef } from "react-native-view-shot";
+
 function ImgBackground() {
   this.myShot = React.createRef();
   const [source, setSource] = useState(null);

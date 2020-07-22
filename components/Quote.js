@@ -114,14 +114,12 @@ export default function Quote({ items, iconVisible, parentMethod }) {
       <Carousel
         ref={ref => (this.carousel = ref)}
         data={items.map(data => (
-          <div>
-            <Fade timeout={4000}>
-              <div>{data.quote}</div>
-            </Fade>
-            <Fade timeout={4000}>
-              <div>{data.author}</div>
-            </Fade>
-          </div>
+          <Text>
+            {data.quote}
+            {"\n"}
+            {"\n"}
+            {data.author}
+          </Text>
         ))}
         sliderWidth={250}
         itemWidth={250}
