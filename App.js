@@ -7,7 +7,7 @@ import LiveBackground from "./components/LiveBackground";
 import ImgBackground from "./components/ImgBackground";
 import Quote from "./components/Quote";
 import LabelBottomNavigation from "./components/LabelBottomNavigation";
-
+import Navigation from "./components/Navigation";
 import QuoteList from "./components/QuoteList";
 import { decode, encode } from "base-64";
 if (!global.btoa) {
@@ -18,5 +18,5 @@ if (!global.atob) {
   global.atob = decode;
 }
 export default function App() {
-  return <LabelBottomNavigation />;
+  return <Navigation />;
 }

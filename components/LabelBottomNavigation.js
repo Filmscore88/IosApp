@@ -13,6 +13,8 @@ export default function LabelBottomNavigation() {
   const CreatePlaceholder = () => (
     <View style={{ flex: 1, backgroundColor: "blue" }} />
   );
+  const CreateNew = () => <View style={{ flex: 1, backgroundColor: "red" }} />;
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -38,6 +40,12 @@ export default function LabelBottomNavigation() {
               <MaterialCommunityIcons name="bell" color={color} size={26} />
             )
           }}
+          listeners={({ navigation }) => ({
+            tabPress: e => {
+              e.preventDefault();
+              navigation.navigate("CreateNew");
+            }
+          })}
         />
       </Tab.Navigator>
     </NavigationContainer>
