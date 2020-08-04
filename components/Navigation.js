@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Button } from "react-native";
+import { View, Button, TouchableOpacity, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -23,27 +23,36 @@ function MyTabBar({ navigation }) {
     />
   );
 }
-const AppTabsScreen = () => {
-  return (
-    <AppTabs.Navigator
-      initialRouteName="Home"
-      tabBar={props => <MyTabBar {...props} />}
-    >
-      <AppTabs.Screen
-        name="Home"
-        component={ImgBackground}
-        options={{
-          tabBarIcon: props => (
-            <Ionicons name="ios-add" size={props.size} color={props.color} />
-          )
-        }}
-      />
-    </AppTabs.Navigator>
-  );
-};
+const AppTabsScreen = ({ navigation }) => (
+  <AppTabs.Navigator initialRouteName="Home">
+    <AppTabs.Screen name="Home" component={ImgBackground} />
+    <AppTabs.Screen
+      name="Create"
+      component={CreateNewPlaceholder}
+      options={{
+        tabBarButton: props => (
+          <Ionicons
+            name="ios-add"
+            size={props.size}
+            color={props.color}
+            onPress={() => {
+              // Navigate using the `navigation` prop that you received
+              navigation.navigate("CreateNew");
+            }}
+          />
+        )
+      }}
+    />
+  </AppTabs.Navigator>
+);
 
+const CreateNew = ({ navigation }) => (
+  <View style={{ flex: 1, backgroundColor: "red" }}>
+    <Text>Modal Screen</Text>
+    <Button title={"close modal"} onPress={() => navigation.goBack()} />
+  </View>
+);
 const RootStack = createStackNavigator();
-const CreateNew = () => <View style={{ flex: 1, backgroundColor: "red" }} />;
 
 const RootStackScreen = () => {
   return (
