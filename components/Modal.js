@@ -5,7 +5,7 @@ export default ({ navigation }) => (
   <View
     style={{
       flex: 1,
-      backgroundColor: "transparent",
+      backgroundColor: "blue",
       alignItems: "center",
       justifyContent: "center"
     }}
