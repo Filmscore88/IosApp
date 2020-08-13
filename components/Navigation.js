@@ -11,10 +11,14 @@ import Modal from "../components/Modal";
 const CreateNewPlaceholder = () => (
   <View style={{ flex: 1, backgroundColor: "blue" }} />
 );
+
 const AppTabs = createBottomTabNavigator();
 
 const AppTabsScreen = ({ navigation }) => (
-  <AppTabs.Navigator initialRouteName="Home">
+  <AppTabs.Navigator
+    initialRouteName="Home"
+    tabBarOptions={{ showLabel: false }}
+  >
     <AppTabs.Screen name="Home" component={ImgBackground} />
     <AppTabs.Screen
       name="Themes"
