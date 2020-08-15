@@ -16,13 +16,11 @@ const AppTabs = createBottomTabNavigator();
 
 const AppTabsScreen = ({ navigation }) => (
   <AppTabs.Navigator
-    initialRouteName="Home"
-    tabBarOptions={{ showLabel: false }}
+    tabBarOptions={{ activeTintColor: "grey", inactiveTintColor: "grey" }}
   >
-    <AppTabs.Screen name="Home" component={ImgBackground} />
     <AppTabs.Screen
       name="Themes"
-      component={CreateNewPlaceholder}
+      component={ImgBackground}
       options={{
         tabBarIcon: props => (
           <Ionicons name="ios-brush" size={props.size} color={props.color} />
